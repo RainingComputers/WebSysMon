@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
+    <script src="{{ url_for('static', filename='updateinfo.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="contentdiv">    
+        <h2>System Information</h2>
+        <table style="width: 100%;">
+            <tr>
+                <td>Processor:</td>
+                <td id="processor"></td>
+            </tr>
+            <tr>
+                <td>Cores:</td>
+                <td id="core_count"></td>
+            </tr>
+            <tr>
+                <td>Architecture:</td>
+                <td id="architecture"></td>
+            </tr>
+            <tr>
+                <td>Operating System:</td>
+                <td id="operating_sys"></td>
+            </tr>
+            <tr>
+                <td>Memory:</td>
+                <td id="memory"></td>
+            </tr>
+        </table>
+
+        <br/>
+        <h2>Disk Information</h2>
+        <table id="disktable" style="width: 100%;">
+        </table>
+    </div>
+{% endblock %}

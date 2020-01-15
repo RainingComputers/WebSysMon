@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
+    <script src="{{ url_for('static', filename='picograph.js') }}"></script>
+    <script src="{{ url_for('static', filename='updategraph.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="contentdiv">
+        <h3>CPU Usage</h3>
+        <canvas class="chart" id="cpugraph"></canvas>
+        <div id="cpulabels"></div>
+
+        <h3>CPU Speed</h3>
+        <canvas class="chart" id="cpuspeedgraph"></canvas>
+        <div id="cpuspeedlabels"></div>
+
+        <h3>Memory Usage</h3>
+        <canvas class="chart" id="memgraph"></canvas>
+        <div id="memlabels"></div>
+
+        <h3>Network Usage</h3>
+        <canvas class="chart" id="netgraph"></canvas>
+        <div id="netlabels"></div>
+
+        <h3>Disk Usage</h3>
+        <canvas class="chart" id="diskgraph"></canvas>
+        <div id="disklabels"></div>
+    </div>
+{% endblock %}

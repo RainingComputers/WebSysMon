@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSysMon</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        {% block scripts %}
+        {% endblock %}
+    </head>
+    <body>
+        <center>
+            <h1>WebSysMon</h1>
+            <span class="navbar">
+                <a class="navbutton" href="{{ url_for('infopage') }}">System Info </a>
+                <a class="navbutton" href="{{ url_for('home') }}">System Monitor </a>
+            </span>
+        </center>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
