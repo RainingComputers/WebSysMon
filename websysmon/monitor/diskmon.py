@@ -64,8 +64,11 @@ def disk_summary():
                 # ENOENT, pop-up a Windows GUI error for a non-ready
                 # partition or just hang.
                 continue
-            
-        size = bytes2human(psutil.disk_usage(part.mountpoint).total)
+
+        try:    
+            size = bytes2human(psutil.disk_usage(part.mountpoint).total)
+        except PermissionError:
+            size = 'Permission Denied'
 
         disk_info.append(dict(zip(keys, list(part)+[size])))
 
@@ -73,8 +76,11 @@ def disk_summary():
     disk_usage = {}
     
     for disk in disk_info:
-        mountpoint = disk['mountpoint'] 
-        disk_usage[mountpoint] = bytes2human(psutil.disk_usage(mountpoint).free)
+        try:
+            mountpoint = disk['mountpoint'] 
+            disk_usage[mountpoint] = bytes2human(psutil.disk_usage(mountpoint).free)
+        except PermissionError:
+            disk_usage[mountpoint] = 'Permission Denied'
 
     return disk_info, disk_usage
 
