@@ -16,6 +16,10 @@ python3 -m pip install pipenv
 git clone https://github.com/RainingComputers/WebSysMon.git
 cd WebSysMon
 ```
++ You may need to install python development headers
+```
+sudo apt-get install python3-dev
+```
 + Create virtual environment and install dependencies
 ```
 pipenv shell

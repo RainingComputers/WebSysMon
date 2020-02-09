@@ -9,6 +9,7 @@ verify_ssl = true
 flask = "*"
 psutil = "*"
 py-cpuinfo = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"

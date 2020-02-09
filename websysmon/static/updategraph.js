@@ -31,28 +31,19 @@ function initGraph(status)
 function updateCharts(status)
 {
     /* Update CPU usage graph */
-    for(i = 0; i < status["core_count"]; i++)
-    {
-        graphs["cpu"].update(status["cpu_usage"][i], i);
-    }  
+    graphs["cpu"].update(status["cpu_usage"]);
 
     /* Update CPU speed graph */
-    for(i = 0; i < status["core_count"]; i++)
-    {
-        graphs["cpuspeed"].update(status["cpu_freq"][i], i);
-    }  
+    graphs["cpuspeed"].update(status["cpu_freq"]);
 
     /* Update memory usage graph */
-    graphs["mem"].update(status["mem_usage"], 0);
-    graphs["mem"].update(status["swap_usage"], 1);
+    graphs["mem"].update([status["mem_usage"], status["swap_usage"]]);
     
     /* Update network usage graph */
-    graphs["net"].update(status["net_recv"], 0);
-    graphs["net"].update(status["net_sent"], 1);
+    graphs["net"].update([status["net_recv"], status["net_sent"]]);
 
     /* Update disk usage */
-    graphs["disk"].update(status["disk_read"], 0);
-    graphs["disk"].update(status["disk_write"], 1);
+    graphs["disk"].update([status["disk_read"], status["disk_write"]]);
 
 }
 
