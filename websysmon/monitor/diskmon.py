@@ -64,7 +64,7 @@ def disk_summary():
                 # ENOENT, pop-up a Windows GUI error for a non-ready
                 # partition or just hang.
                 continue
-
+        elif('snap' in part.mountpoint): continue
         try:    
             size = bytes2human(psutil.disk_usage(part.mountpoint).total)
         except PermissionError:
