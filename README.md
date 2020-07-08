@@ -1,6 +1,5 @@
-![project logo](/icon128.png)
+![project logo](screenshot.gif)
 
-# WebSysMon
 Stands for 'Web System Monitor'. Simple flask based application to monitor a remote computer.
 Monitor CPU usage, CPU Speed, Memory usage, Network usage and Disk reads/writes with WebSysMon.
 
