@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
+    <script src="{{ url_for('static', filename='ls.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="contentdiv fit-viewport-height">
+        
+        <div class="inline-center">
+            <img id="backbutton" src="/static/symbols/arrow-left.svg">
+            
+            <h3 id="path" class="expand pad-sides"></h3>
+            
+            <img id="togglehiddenbutton" src="/static/symbols/eye.svg">
+        </div>
+
+        <div id="filebrowser" class="scrollable" style="height: 75%;">
+        </div>
+
+    </div>
+{% endblock %}

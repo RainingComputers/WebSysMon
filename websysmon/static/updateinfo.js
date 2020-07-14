@@ -7,6 +7,7 @@ function updateInfo(info)
     byId("architecture").innerHTML = info["architecture"];
     byId("operating_sys").innerHTML = info["operating_sys"];
     byId("memory").innerHTML = info["memory"];
+    byId("uptime").innerHTML = info["uptime"];
 }
 
 function updateDiskInfo(info)

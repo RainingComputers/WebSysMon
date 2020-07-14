@@ -12,9 +12,6 @@ function initGraph(status)
     /* Create graph for cpu usage */
     cpu_graph = createGraph("cpugraph", cpulabels, "%", "cpulabels", 5, 100);
 
-    /* Create graph for CPU speed */
-    cpuspeed_graph = createGraph("cpuspeedgraph", cpulabels, "MHz", "cpuspeedlabels", 5, 100);
-
     /* Create graph for memory usage */
     mem_graph = createGraph("memgraph", ["Memory", "Swap"], "%", "memlabels", 5, 100);
 
@@ -25,16 +22,13 @@ function initGraph(status)
     disk_graph = createGraph("diskgraph", ["Bytes Read", "Bytes Written"], "bytes/s", "disklabels", 5, 1000);
 
     /* Make graph object */
-    graphs = {cpu:cpu_graph, cpuspeed:cpuspeed_graph, mem:mem_graph, net:net_graph, disk:disk_graph};
+    graphs = {cpu:cpu_graph, mem:mem_graph, net:net_graph, disk:disk_graph};
 }
 
 function updateCharts(status)
 {
     /* Update CPU usage graph */
     graphs["cpu"].update(status["cpu_usage"]);
-
-    /* Update CPU speed graph */
-    graphs["cpuspeed"].update(status["cpu_freq"]);
 
     /* Update memory usage graph */
     graphs["mem"].update([status["mem_usage"], status["swap_usage"]]);

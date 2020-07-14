@@ -1,6 +1,8 @@
-import psutil
+import datetime
 import time
 import threading
+
+import psutil
 
 _cpu_usage = [0]*psutil.cpu_count()
 _cpu_freq = [0]*psutil.cpu_count()
@@ -51,3 +53,17 @@ def swap():
     returns swap usage
     '''
     return _swap_usage
+    
+def uptime():
+    '''
+    returns system uptime
+    '''
+    boot = datetime.datetime.fromtimestamp(psutil.boot_time())
+    now = datetime.datetime.now()
+    delta = (now-boot)
+
+    days = delta.days
+    hours, rem = divmod(delta.seconds, 3600)
+    minutes, seconds = divmod(rem, 60)
+
+    return f"{days} days, {hours} hours, {minutes} minutes"

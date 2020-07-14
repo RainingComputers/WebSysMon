@@ -1,9 +1,14 @@
 ![project logo](screenshot.gif)
 
 Stands for 'Web System Monitor'. Simple flask based application to monitor a remote computer.
-Monitor CPU usage, CPU Speed, Memory usage, Network usage and Disk reads/writes with WebSysMon.
+Monitor CPU usage, memory usage, network usage, disk reads/writes
+and browse files with WebSysMon.
+
+WebSysMon currently supports Linux only.
 
 Uses [picograph.js](https://github.com/RainingComputers/picograph.js) library to draw graphs.
+
+Uses [Feather icons](https://feathericons.com/) for icons.
 
 # Installation
 + Install pipenv

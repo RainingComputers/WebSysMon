@@ -1,4 +1,6 @@
-from flask import Flask, render_template, jsonify
+from pathlib import Path
+
+from flask import Flask, render_template, jsonify, redirect, url_for, session, request
 from websysmon import app
 
 from .monitor import systemmon
@@ -7,11 +9,24 @@ from .monitor import diskmon
 from .monitor import bytes2human
 
 from .monitor import PROCESSOR, CORE_COUNT, ARCHITECTURE
-from .monitor import OPERATING_SYS, MEMORY
+from .monitor import OPERATING_SYS, MEMORY, HOMEDIR
+
+from .ls import ls
+
+app.secret_key = '0aaf9678aced38ae602ea2be74af6ea71b4051de45a0144f'
 
 @app.route('/')
-def home():
-    return render_template('index.html')
+@app.route('/infopage')
+def infopage():
+    return render_template('infopage.html')
+
+@app.route('/monitorpage')
+def monitorpage():
+    return render_template('monitor.html')
+
+@app.route('/filespage')
+def filespage():
+    return render_template('ls.html')
 
 @app.route('/monitor', methods=['GET'])
 def getstatus():
@@ -35,10 +50,6 @@ def getstatus():
         disk_read=disk_read, disk_write=disk_write
     )
 
-@app.route('/infopage')
-def infopage():
-    return render_template('infopage.html')
-
 @app.route('/disks')
 def getdisks():
     disk_info, disk_usage = diskmon.disk_summary()
@@ -48,4 +59,26 @@ def getdisks():
 def getinfo():
     return jsonify(processor=PROCESSOR, core_count=CORE_COUNT,
         architecture=ARCHITECTURE, operating_sys=OPERATING_SYS, 
-        memory=MEMORY)
+        memory=MEMORY, uptime=systemmon.uptime())
+
+@app.route('/browse', defaults={'path':HOMEDIR})
+@app.route('/browse/<path:path>')
+@app.route('/browseparent/<path:path>')
+@app.route('/togglehidden/<path:path>')
+def browse(path):
+    if('showhidden' not in session):
+        session['showhidden'] = False
+
+    path = path.replace('%20', ' ')
+    if(path[0] != '/'): path = '/' + path
+    
+    if('browseparent' in request.url_rule.rule):
+        path = str(Path(path).parent)
+    elif('togglehidden' in request.url_rule.rule):
+        session['showhidden'] = not session['showhidden']
+
+    return jsonify({'hidden':session['showhidden'], 'path':path, 
+        'items':ls(path, session['showhidden'])})
+    
+    #return render_template('ls_old.html', items=ls(path, showhidden), 
+    #    path=path, hidden=showhidden)

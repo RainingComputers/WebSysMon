@@ -1,3 +1,4 @@
+from pathlib import Path
 import platform
 
 import psutil
@@ -16,6 +17,7 @@ CORE_COUNT = _info['count']
 ARCHITECTURE = _info['arch']
 OPERATING_SYS = platform.system() + ' ' + platform.release()
 MEMORY = bytes2human(psutil.virtual_memory().total)
+HOMEDIR = str(Path.home())
 
 # Start system monitor
 systemmon.init_monitor()

@@ -1,6 +1,10 @@
 .PHONY : help
 help :
+	@echi "rundbg   : Run flask app in debug mode."
 	@echo "clean	: Remove auto-generated files."
+
+rundbg:
+	FLASK_APP=websysmon FLASK_ENV=development flask run
 
 clean:
 	rm -f *.pyc

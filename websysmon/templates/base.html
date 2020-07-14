@@ -4,18 +4,20 @@
         <title>WebSysMon</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-        {% block scripts %}
-        {% endblock %}
     </head>
     <body>
-        <center>
-            <h1>WebSysMon</h1>
-            <span class="navbar">
-                <a class="navbutton" href="{{ url_for('infopage') }}">System Info </a>
-                <a class="navbutton" href="{{ url_for('home') }}">System Monitor </a>
-            </span>
-        </center>
+        <div class="navigation-bar">
+            <div class="contentdiv inline-center">
+                <img src="/static/symbols/activity-white.svg">
+                <a class="navigation-bar-title pad-left" href="{{ url_for('infopage') }}"><b>WebSysMon</b></a>
+                <a class="navigation-button pad-left" href="{{ url_for('infopage') }}">Info</a>
+                <a class="navigation-button pad-left" href="{{ url_for('monitorpage') }}">Monitor</a>
+                <a class="navigation-button pad-left" href="{{ url_for('filespage') }}">Files</a>
+            </div>
+        </div>
         {% block body %}
         {% endblock %}
+        {% block scripts %}
+        {% endblock %}    
     </body>
 </html>
