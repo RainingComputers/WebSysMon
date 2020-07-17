@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block body %}
-    <div class="contentdiv">    
+    <div class="container">    
         <h2>System Information</h2>
-        <table style="width: 100%;">
+        <table>
             <tr>
                 <td>Processor:</td>
                 <td id="processor"></td>
@@ -37,7 +37,31 @@
 
         <br/>
         <h2>Disk Information</h2>
-        <table id="disktable" style="width: 100%;">
+        
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Device</th>
+                    <th>File System</th>
+                    <th>Mountpoint</th>
+                    <th>Free Space</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody id="disk-table">
+                <!-- Filled by JS with all mounted disk items -->
+            </tbody>
         </table>
+
+        <template id="disk-item">
+            <tr>
+                <td><!-- device_name --></td>
+                <td><!-- filesystem --></td>
+                <td><!-- mountpoint --></td>
+                <td><!-- free_space --></td>
+                <td><!-- size --></td>
+            </tr>            
+        </template>
+
     </div>
 {% endblock %}

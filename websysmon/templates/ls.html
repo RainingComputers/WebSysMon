@@ -6,18 +6,38 @@
 {% endblock %}
 
 {% block body %}
-    <div class="contentdiv fit-viewport-height">
+    <div class="container fit-viewport-height">
         
         <div class="inline-center">
-            <img id="backbutton" src="/static/symbols/arrow-left.svg">
+            <img id="back-button" src="/static/symbols/arrow-left.svg">
             
-            <h3 id="path" class="expand pad-sides"></h3>
+            <h3 id="path" class="expand"></h3>
             
-            <img id="togglehiddenbutton" src="/static/symbols/eye.svg">
+            <img id="toggle-hidden-button" src="/static/symbols/eye.svg">
         </div>
 
-        <div id="filebrowser" class="scrollable" style="height: 75%;">
+        <!-- File browser is filled with file browser items by JS -->
+        <div id="file-browser" class="scrollable" style="height: 75%;">
         </div>
+
+        <template id="file-browser-item">
+            <!-- onclick filled with JS -->
+            <div class="inline-center selectable"> 
+                <div class ="expand">
+                    <div class="inline-center">
+                        <!-- src filled with JS -->
+                        <img src=""> 
+                        <p style="overflow-x: hidden;"> 
+                            <!-- item name filled with JS --> 
+                        </p>
+                    </div>
+                </div>
+
+                <p> <!-- item size filled with JS --> </p>             
+                <p> <!-- item date filled with JS --> </p>                
+            </div>                
+        </template> 
+
 
     </div>
 {% endblock %}

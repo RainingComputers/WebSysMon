@@ -1,53 +1,71 @@
-var byId = function(id) { return document.getElementById(id); };
+const byId = function(id) { return document.getElementById(id); };
 
 function ls(items)
 {
-    filebrowser = byId("filebrowser");
+    const filebrowser = byId("file-browser");
     filebrowser.innerHTML = "";
 
-    path = items["path"];
+    const path = items["path"];
     byId("path").innerHTML = path;
 
-    var onclick_back_button = `getJSONAndCall(ls, '/browseparent/${path}')`
-    byId("backbutton").setAttribute("onclick", onclick_back_button)
+    /* on click for back button */
+    const onclick_back_button = `getJSONAndCall(ls, '/browseparent/${path}')`
+    byId("back-button").setAttribute("onclick", onclick_back_button)
 
-    toggle_hidden_button = byId("togglehiddenbutton")
-    var onclick_toggle_hidden_button = `getJSONAndCall(ls, '/togglehidden/${path}')`
+    /* on click for toggle hidden button */
+    const toggle_hidden_button = byId("toggle-hidden-button")
+    const onclick_toggle_hidden_button = `getJSONAndCall(ls, '/togglehidden/${path}')`
     toggle_hidden_button.setAttribute("onclick", onclick_toggle_hidden_button)
 
+    /* Set icon for toggle hidden button */
     if(items['hidden']) 
         toggle_hidden_button.setAttribute("src", "/static/symbols/eye-off.svg")
     else
         toggle_hidden_button.setAttribute("src", "/static/symbols/eye.svg")
 
-    for(var i=0; i<items["items"].length; i++)
+    /* Fill file browser with items using the item template */
+    const file_item_template = document.querySelector("#file-browser-item");
+
+    for(let i = 0; i < items["items"].length; i++)
     {
-        var item = items["items"][i];
+        item = items["items"][i];
 
-        var onclick = "";
-        var icon = "/static/symbols/file.svg"
-
-        if(item.isdir)
+        let onclick = "";
+        let icon = "/static/symbols/file.svg"
+        
+        if(item.isdir) 
         {
             onclick = `getJSONAndCall(ls, '/browse/${item.path}')`
             icon = "/static/symbols/folder.svg"
         }
 
-        filebrowser.innerHTML += `
-            <div class="inline-center" style="column-gap: 50px;" onclick="${onclick}">
-                <div class ="inline-center expand">
-                    <div class="inline-center">
-                        <img src="${icon}">
-                        <span class="pad-sides" style="overflow-x: hidden;"> 
-                            ${item["name"]} 
-                        </span>
-                    </div>
-                </div>
+        /* Clone the file browser item template */
+        const template_clone = file_item_template.content.cloneNode(true);
 
-                <p> ${item.size} </p>             
-                <p> ${item.date} </p>                
-            </div>
-        `
+        /* Set icon */
+        const img = template_clone.querySelector("img");
+        img.src = icon;
+
+        /* On double click action */
+        const maindiv = template_clone.querySelector("div");
+        maindiv.setAttribute("ondblclick", onclick);
+        maindiv.setAttribute("tabindex", i);
+
+
+
+        /* Item name */
+        const item_details = template_clone.querySelectorAll("p");
+        item_details[0].textContent = item.name;
+
+        var mq = window.matchMedia( "(min-width: 992px)" );
+        if (mq.matches) {
+            /* Item date and size */
+            item_details[1].textContent = item.size;
+            item_details[2].textContent = item.date;
+        }
+
+
+        filebrowser.appendChild(template_clone);
     }
 }
 

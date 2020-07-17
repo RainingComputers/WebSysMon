@@ -7,6 +7,7 @@ import psutil
 _cpu_usage = [0]*psutil.cpu_count()
 _cpu_freq = [0]*psutil.cpu_count()
 _mem_usage = 0
+_swap_usage = 0
 
 def _update():
     while(True):

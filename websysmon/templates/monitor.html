@@ -7,14 +7,25 @@
 {% endblock %}
 
 {% block body %}
-    <div class="contentdiv">
-        <h4>CPU Usage</h4>
-        <canvas class="chart" id="cpugraph"></canvas>
-        <div id="cpulabels"></div>
+    <div class="container">
+        
+        <div class="boxes-chart">
+            <div>
+                <h4>CPU Usage</h4>
+                <canvas class="chart" id="cpugraph"></canvas>
+                <div>
+                    <div id="cpulabels"></div>
+                </div>
+            </div>
 
-        <h4>Memory Usage</h4>
-        <canvas class="chart" id="memgraph"></canvas>
-        <div id="memlabels"></div>
+            <div>
+                <h4>Memory Usage</h4>
+                <canvas class="chart" id="memgraph"></canvas>
+                <div>
+                    <div id="memlabels"></div>
+                </div>
+            </div>
+        </div>
 
         <h4>Network Usage</h4>
         <canvas class="chart" id="netgraph"></canvas>

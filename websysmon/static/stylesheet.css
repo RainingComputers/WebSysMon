@@ -1,33 +1,48 @@
-html, body, h1, h2, h3, h4, h5, h6, span 
-{
-    font-family: "Lucida Console", Monaco, monospace;
-}
-
-body {
-    margin: 0px;
-}
+body{
+    font: 15px Monospace;
+    padding:0;
+    margin:0;
+    background-color:#f4f4f4;
+  }
 
 th {
     text-align: left;
 }
 
+tr {
+    padding: 1em
+}
+
+.container {
+    width: 60%;
+    margin: auto;
+}
+
 .inline-center {
-    /* Set padding manually for each item */
     display: flex;
     align-items:center;
+    gap: 2em;
 }
 
 .expand {
     flex-grow: 1;
 }
 
-.pad-sides {
-    padding-left: 1em;
-    padding-right: 1em;
+.boxes-chart,
+.boxes {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    flex-wrap: wrap;
 }
 
-.pad-left {
-    padding-left: 1em;
+.boxes-chart * {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.box-right {
+    margin-left: auto;
 }
 
 .fit-viewport-height {
@@ -40,12 +55,12 @@ th {
 }
 
 .scrollable {
-    /* Set height manually */
     border:2px dotted #000000;
     overflow-y: scroll;
-    padding: 10px;
-    scrollbar-color: #000000 #FFFFFF;
+    padding: 1em;
+    scrollbar-color: #000000 #f4f4f4;
     scrollbar-width: thin;
+    border-radius: 2px;
 }
 
 .navigation-bar {
@@ -53,40 +68,80 @@ th {
 }
 
 .navigation-bar-title {
-    flex-grow: 1;
     color: white;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
     text-decoration: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .navigation-button {
     color: white;
     text-decoration: none;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    font-weight:bold;
 }
 
 .navigation-button:hover {
-    font-weight:bold;
+    color: #dbdbdb;
+}
+
+#toggle-nav,
+.navigation-hamburger {
+    display: none;
 }
 
 .chart {
     width: 100%;
-    height: 130px;
+    height: 10rem;
     border:2px dotted #000000;
 }
 
-canvas {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+.selectable {
+    border-radius: 5px;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
-.contentdiv {
-    width: 80%;
-    margin:0 auto;
+.selectable:hover {
+    background-color: #dbdbdb;
+    cursor: pointer;
 }
 
-@media only screen and (min-width: 992px) {
-    .contentdiv {
-        width: 50%;
+.selectable:focus {
+    background-color: #dbdbdb;
+}
+
+@media only screen and (max-width: 1400px) {
+    .container {
+        width: 90%;
+    }
+} 
+
+@media only screen and (max-width: 750px) {
+    .boxes-chart,
+    .boxes {
+        /* Set padding manually for each item */
+        flex-direction: column;
+        gap: 0em;
+    }
+    
+    .box-right {
+        margin-left: 0;
+    }
+    
+    .navigation-menu {
+        display: none;
+    }
+
+    .navigation-hamburger {
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    #toggle-nav:checked ~ .navigation-menu {
+        display: flex;
+        align-items: center;
     }
 } 

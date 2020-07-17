@@ -1,4 +1,4 @@
-var byId = function(id) { return document.getElementById(id); };
+const byId = function(id) { return document.getElementById(id); };
 
 function updateInfo(info)
 {
@@ -12,35 +12,32 @@ function updateInfo(info)
 
 function updateDiskInfo(info)
 {
-    /* Table header */
-    byId("disktable").innerHTML = `
-        <tr>
-            <th>Device</th>
-            <th>File System</th>
-            <th>Mountpoint</th>
-            <th>Free Space</th>
-            <th>Size</th>
-        </tr>
-    `
+    const disktable = byId("disk-table");
+    const disk_item_template = document.querySelector("#disk-item");
 
     /* Loop through each disk and add table row */
-    for(var i = 0; i < info["disk_info"].length; i++)
+    for(let disk of info["disk_info"])
     {
-        device_name = info["disk_info"][i]["device"];
-        filesystem = info["disk_info"][i]["fstype"];
-        mountpoint = info["disk_info"][i]["mountpoint"];
-        size = info["disk_info"][i]["size"];
-        free_space = info["disk_usage"][mountpoint]
+        /* Extract info from jason */
+        const device_name = disk["device"];
+        const filesystem = disk["fstype"];
+        const mountpoint = disk["mountpoint"];
+        const size = disk["size"];
+        const free_space = info["disk_usage"][mountpoint]
 
-        byId("disktable").innerHTML += `
-        <tr>
-            <td>${device_name}</td>
-            <td>${filesystem}</td>
-            <td>${mountpoint}</td>
-            <td>${free_space}</td>
-            <td>${size}</td>
-        </tr>
-    `
+        /* Clone template */
+        const template_clone = disk_item_template.content.cloneNode(true);
+        const td = template_clone.querySelectorAll("td");
+
+        /* Fill template */
+        td[0].textContent = device_name;
+        td[1].textContent = filesystem;
+        td[2].textContent = mountpoint;
+        td[3].textContent = free_space;
+        td[4].textContent = size;
+
+        /* Add template */
+        disktable.appendChild(template_clone)
     }
 
 }

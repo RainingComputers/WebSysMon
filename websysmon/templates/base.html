@@ -1,18 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>WebSysMon</title>
+        <meta name="viewport" content="width=device-width">
+        <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <title>WebSysMon</title>
     </head>
     <body>
         <div class="navigation-bar">
-            <div class="contentdiv inline-center">
-                <img src="/static/symbols/activity-white.svg">
-                <a class="navigation-bar-title pad-left" href="{{ url_for('infopage') }}"><b>WebSysMon</b></a>
-                <a class="navigation-button pad-left" href="{{ url_for('infopage') }}">Info</a>
-                <a class="navigation-button pad-left" href="{{ url_for('monitorpage') }}">Monitor</a>
-                <a class="navigation-button pad-left" href="{{ url_for('filespage') }}">Files</a>
+            <div class="container boxes">
+                <input type="checkbox" id="toggle-nav">
+                
+                <div class="inline-center">
+                    <img src="/static/symbols/activity-white.svg">
+                    <a class="navigation-bar-title" href="{{ url_for('infopage') }}">
+                        <b>WebSysMon</b>
+                    </a>
+                    <label for="toggle-nav" class="navigation-hamburger">
+                        <img src="/static/symbols/menu-white.svg">
+                    </label>
+                </div>
+                
+                <nav class="boxes box-right navigation-menu">
+                    <a class="navigation-button" href="{{ url_for('infopage') }}">Info</a>
+                    <a class="navigation-button" href="{{ url_for('monitorpage') }}">Monitor</a>
+                    <a class="navigation-button" href="{{ url_for('filespage') }}">Files</a>
+                </nav>
             </div>
         </div>
         {% block body %}
