@@ -27,14 +27,15 @@ function updateDiskInfo(info)
 
         /* Clone template */
         const template_clone = disk_item_template.content.cloneNode(true);
-        const td = template_clone.querySelectorAll("td");
+        const span = template_clone.querySelectorAll("span");
+        const p = template_clone.querySelector("p");
 
         /* Fill template */
-        td[0].textContent = device_name;
-        td[1].textContent = filesystem;
-        td[2].textContent = mountpoint;
-        td[3].textContent = free_space;
-        td[4].textContent = size;
+        p.textContent = device_name;
+        span[0].textContent = mountpoint;
+        span[1].textContent = filesystem;
+        span[2].textContent = size;
+        span[3].textContent = free_space;
 
         /* Add template */
         disktable.appendChild(template_clone)

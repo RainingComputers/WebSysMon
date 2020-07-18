@@ -8,60 +8,55 @@
 {% block body %}
     <div class="container">    
         <h2>System Information</h2>
-        <table>
-            <tr>
-                <td>Processor:</td>
-                <td id="processor"></td>
-            </tr>
-            <tr>
-                <td>Cores:</td>
-                <td id="core_count"></td>
-            </tr>
-            <tr>
-                <td>Architecture:</td>
-                <td id="architecture"></td>
-            </tr>
-            <tr>
-                <td>Operating System:</td>
-                <td id="operating_sys"></td>
-            </tr>
-            <tr>
-                <td>Memory:</td>
-                <td id="memory"></td>
-            </tr>
-            <tr>
-                <td>Uptime:</td>
-                <td id="uptime"></td>
-            </tr>
-        </table>
 
-        <br/>
-        <h2>Disk Information</h2>
+        <div class="grid gap-2em gap-1em-mobile">
+            <div class="card">
+                <p class="card-title">Processor</p>
+                <span id="processor"></span>
+            </div>
+            <div class="card">
+                <p class="card-title">Cores</p>
+                <span id="core_count"></span>
+            </div>
+            <div class="card">
+                <p class="card-title">Architecture</p>
+                <span id="architecture"></span>
+            </div>
+            <div class="card">
+                <p class="card-title">Memory</p>
+                <span id="memory"></span>
+            </div>
+            <div class="card">
+                <p class="card-title">OS</p>
+                <span id="operating_sys"></span>
+            </div>
+            <div class="card">
+                <p class="card-title">Uptime</p>
+                <span id="uptime"></span>
+            </div>
+        </div>
         
-        <table style="width: 100%;">
-            <thead>
-                <tr>
-                    <th>Device</th>
-                    <th>File System</th>
-                    <th>Mountpoint</th>
-                    <th>Free Space</th>
-                    <th>Size</th>
-                </tr>
-            </thead>
-            <tbody id="disk-table">
-                <!-- Filled by JS with all mounted disk items -->
-            </tbody>
-        </table>
+        <h2>Disk Information</h2>
+    
+        <div class="grid gap-2em gap-1em-mobile" id="disk-table">
+
+        </div>
 
         <template id="disk-item">
-            <tr>
-                <td><!-- device_name --></td>
-                <td><!-- filesystem --></td>
-                <td><!-- mountpoint --></td>
-                <td><!-- free_space --></td>
-                <td><!-- size --></td>
-            </tr>            
+            <div class="card">
+                <p class="card-title"></p>
+                Mountpoint:
+                <span><!-- mountpoint --></span><br>
+                File system: 
+                <span><!-- filesystem --></span><br>
+                Size:
+                <span><!-- size --></span><br>
+                Available space: 
+                <span><!-- free_space --></span>
+            </div>         
         </template>
+
+        <span class="padding"></span>
 
     </div>
 {% endblock %}

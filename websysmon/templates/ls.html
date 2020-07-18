@@ -6,38 +6,40 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container fit-viewport-height">
+
+    <div class="container">
         
-        <div class="inline-center">
-            <img id="back-button" src="/static/symbols/arrow-left.svg">
+        <div class="inline gap-1em">
+            <button class="button" id="back-button">
+                <img src="/static/symbols/arrow-left.svg">
+            </button>
             
-            <h3 id="path" class="expand"></h3>
+            <h3 id="path" class="inline-expand txt-clip txt-clip-rtl"></h3>
             
-            <img id="toggle-hidden-button" src="/static/symbols/eye.svg">
+            <button class="button" id="toggle-hidden-button">
+                <img id="toggle-hidden-button-icon" src="/static/symbols/eye.svg">
+            </button>
         </div>
-
+    
         <!-- File browser is filled with file browser items by JS -->
-        <div id="file-browser" class="scrollable" style="height: 75%;">
+        <div id="file-browser" class="grid gap-1em disable-usr-select">
         </div>
-
-        <template id="file-browser-item">
+    
+        <template id="file-browser-item"> 
             <!-- onclick filled with JS -->
-            <div class="inline-center selectable"> 
-                <div class ="expand">
-                    <div class="inline-center">
-                        <!-- src filled with JS -->
-                        <img src=""> 
-                        <p style="overflow-x: hidden;"> 
-                            <!-- item name filled with JS --> 
-                        </p>
-                    </div>
-                </div>
-
-                <p> <!-- item size filled with JS --> </p>             
-                <p> <!-- item date filled with JS --> </p>                
+            <div class="card selectable"> 
+                <!-- src filled with JS -->
+                <img class="icon" src=""> 
+                <span class="card-title txt-clip"> 
+                    <!-- item name filled with JS --> 
+                </span>
+                <br><br>
+                <span class="gray-text"> <!-- item size filled with JS --> </span>          
+                <br>
+                <span class="gray-text"> <!-- item date filled with JS --> </span> 
             </div>                
         </template> 
-
-
+    
+    
     </div>
 {% endblock %}

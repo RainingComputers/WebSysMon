@@ -9,30 +9,42 @@
 {% block body %}
     <div class="container">
         
-        <div class="boxes-chart">
-            <div>
-                <h4>CPU Usage</h4>
-                <canvas class="chart" id="cpugraph"></canvas>
-                <div>
-                    <div id="cpulabels"></div>
+        <h2>System Monitor</h2>
+
+        <div class="stacks gap-2em gam-1em-mobile">
+            <div class="grid gap-2em gam-1em-mobile">
+                <div class="card">
+                    <p class="card-title">CPU Usage</p>
+                    <canvas class="chart" id="cpugraph"></canvas>
+                    <div>
+                        <div id="cpulabels"></div>
+                    </div>
                 </div>
+
+                <div class="card">
+                    <p class="card-title">Memory Usage</p>
+                    <canvas class="chart" id="memgraph"></canvas>
+                    <div>
+                        <div id="memlabels"></div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="card">
+                <p class="card-title">Network Usage</p>
+                <canvas class="chart" id="netgraph"></canvas>
+                <div id="netlabels"></div>
+            </div>
+    
+            <div class="card">
+                <p class="card-title">Disk Usage</p>
+                <canvas class="chart" id="diskgraph"></canvas>
+                <div id="disklabels"></div>
             </div>
 
-            <div>
-                <h4>Memory Usage</h4>
-                <canvas class="chart" id="memgraph"></canvas>
-                <div>
-                    <div id="memlabels"></div>
-                </div>
-            </div>
         </div>
 
-        <h4>Network Usage</h4>
-        <canvas class="chart" id="netgraph"></canvas>
-        <div id="netlabels"></div>
+        <span class="padding"></span>
 
-        <h4>Disk Usage</h4>
-        <canvas class="chart" id="diskgraph"></canvas>
-        <div id="disklabels"></div>
     </div>
 {% endblock %}

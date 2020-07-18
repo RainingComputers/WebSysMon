@@ -40,7 +40,7 @@ function createGraph(canvasID, labels, unit, labelDivID, intervalSize, maxVal,
         const colorID = valueIDs[i] + "color";
         
         byID(labelDivID).innerHTML += `
-            <div style="display: inline-block; padding-left: 2em;">
+            <div style="display: inline-block;">
                 <svg width="10" height="10">
                     <rect id="${colorID}" width="10" height="10"/>
                 </svg> 
@@ -127,7 +127,7 @@ class Graph
         this.intervalSize = this.width/this.nValuesFloat;
 
         /* Set line width */
-        this.ctx.lineWidth = 2*this.cssScale;
+        this.ctx.lineWidth = 1*this.cssScale;
 
         /* Draw vertical scale */
         if(this.vlines)
@@ -163,7 +163,7 @@ class Graph
             this.ctx.fillText((i*sstep).toFixed(2), xoffset, y+yoffset);
             this.ctx.beginPath();
             this.ctx.moveTo(0, y);
-            this.ctx.lineTo(this.width, y);
+            this.ctx.lineTo(this.width, y+1);
             this.ctx.strokeStyle = "#e3e3e3";
             this.ctx.stroke();
         }
@@ -188,6 +188,9 @@ class Graph
                 this.ctx.rotate(-Math.PI/2);
             }               
         }  
+
+        /* Set line width */
+        this.ctx.lineWidth = 2*this.cssScale;
 
         /* Draw graph */
         for(let i = 0; i < this.noLabels; i++)

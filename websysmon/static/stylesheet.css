@@ -1,52 +1,137 @@
-body{
+/* 
+    ==============
+    = Containers =
+    ==============
+*/
+
+body {
     font: 15px Monospace;
     padding:0;
-    margin:0;
-    background-color:#f4f4f4;
-  }
-
-th {
-    text-align: left;
-}
-
-tr {
-    padding: 1em
+    margin: 0px;
+    background-color:#f8f9fa;
 }
 
 .container {
     width: 60%;
     margin: auto;
+    padding-top: 48px;
 }
 
-.inline-center {
+@media only screen and (max-width: 1400px) {
+    .container {
+        width: 90%;
+        padding-top: 58px;
+    }
+} 
+
+.card {
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 1em 2em 1em 2em;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075) !important;
+}
+
+.card-title *,
+.card-title {
+    margin-top: 0;
+    padding-top: 0;
+    font-weight: bold;
+}
+
+/* 
+    ==================
+    = Layout classes =
+    ==================
+*/
+
+.inline {
     display: flex;
-    align-items:center;
-    gap: 2em;
+    align-items: center;
 }
 
-.expand {
-    flex-grow: 1;
-}
-
-.boxes-chart,
 .boxes {
     display: flex;
     flex-direction: row;
-    gap: 2em;
     flex-wrap: wrap;
 }
 
-.boxes-chart * {
-    flex-basis: 0;
+.stacks {
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));;
+}
+
+.grid * {
+    min-width: 0;
+}
+
+@media only screen and (max-width: 750px) {
+    .stacks,
+    .boxes {
+        flex-direction: column;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 
+    ==========================
+    = Layout class modifiers =
+    ==========================
+*/
+
+.inline-expand {
     flex-grow: 1;
 }
 
-.box-right {
+.boxes-right {
     margin-left: auto;
 }
 
-.fit-viewport-height {
-    height: 100vh;
+.gap-none {
+    gap: 0em;
+}
+
+.gap-1em {
+    gap: 1em;
+}
+
+.gap-2em {
+    gap: 2em;
+}
+
+@media only screen and (max-width: 750px) {
+    .gap-none-mobile {
+        gap: 0em;
+    }
+    
+    .gap-1em-mobile {
+        gap: 1em;
+    }
+
+    .gap-2em-mobile {
+        gap: 2em;
+    }
+
+    .boxes-right {
+        margin-left: 0;
+    }
+}
+
+/*
+    ================================
+    = Miscellaneous helper classes =
+    ================================
+*/
+
+.padding {
+    padding:2em;
 }
 
 .rm-link-decoration {
@@ -54,31 +139,99 @@ tr {
     color: #000000;
 }
 
-.scrollable {
-    border:2px dotted #000000;
-    overflow-y: scroll;
-    padding: 1em;
-    scrollbar-color: #000000 #f4f4f4;
-    scrollbar-width: thin;
-    border-radius: 2px;
+.chart {
+    width: 100%;
+    height: 10rem;
 }
 
-.navigation-bar {
+.disable-usr-select * {
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;   
+    -khtml-user-select: none;    
+    -moz-user-select: none;      
+    -ms-user-select: none;       
+    user-select: none;  
+}
+
+.selectable:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+.selectable:focus {
+    filter: brightness(80%);
+}
+
+.icon {
+    height: 24px;
+    width: 24px;
+}
+
+.gray-text {
+    color: #212529;
+}
+
+.txt-clip {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    width:80%;
+    display:inline-block;
+}
+
+.txt-clip-rtl {
+    direction: rtl;
+    text-align: left;
+}
+
+
+/* 
+    ================
+    = Button class =
+    ================
+*/
+
+.button {
+	background-color: #f8f9fa;
+	border: none;
+	padding: 1em;
+	text-decoration: none;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.button:active {
+    filter: brightness(80%);
+}
+
+/*
+    ==========================
+    = Nav bar helper classes =
+    ==========================
+*/
+
+#navigation-bar {
     background: #1e2530;
+    box-shadow: 0px 0px 20px darkgray;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#navigation-bar .container {
+    padding-top: 0;
 }
 
 .navigation-bar-title {
     color: white;
     text-decoration: none;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 1em;
 }
 
 .navigation-button {
     color: white;
     text-decoration: none;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 1em;
     font-weight:bold;
 }
 
@@ -91,45 +244,7 @@ tr {
     display: none;
 }
 
-.chart {
-    width: 100%;
-    height: 10rem;
-    border:2px dotted #000000;
-}
-
-.selectable {
-    border-radius: 5px;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-.selectable:hover {
-    background-color: #dbdbdb;
-    cursor: pointer;
-}
-
-.selectable:focus {
-    background-color: #dbdbdb;
-}
-
-@media only screen and (max-width: 1400px) {
-    .container {
-        width: 90%;
-    }
-} 
-
 @media only screen and (max-width: 750px) {
-    .boxes-chart,
-    .boxes {
-        /* Set padding manually for each item */
-        flex-direction: column;
-        gap: 0em;
-    }
-    
-    .box-right {
-        margin-left: 0;
-    }
-    
     .navigation-menu {
         display: none;
     }
@@ -138,6 +253,7 @@ tr {
         display: block;
         margin-left: auto;
         cursor: pointer;
+        padding: 1em;
     }
 
     #toggle-nav:checked ~ .navigation-menu {

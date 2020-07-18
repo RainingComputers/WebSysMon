@@ -8,11 +8,11 @@
         <title>WebSysMon</title>
     </head>
     <body>
-        <div class="navigation-bar">
+        <div id="navigation-bar">
             <div class="container boxes">
                 <input type="checkbox" id="toggle-nav">
                 
-                <div class="inline-center">
+                <div class="inline">
                     <img src="/static/symbols/activity-white.svg">
                     <a class="navigation-bar-title" href="{{ url_for('infopage') }}">
                         <b>WebSysMon</b>
@@ -22,13 +22,14 @@
                     </label>
                 </div>
                 
-                <nav class="boxes box-right navigation-menu">
+                <nav class="boxes boxes-right navigation-menu">
                     <a class="navigation-button" href="{{ url_for('infopage') }}">Info</a>
                     <a class="navigation-button" href="{{ url_for('monitorpage') }}">Monitor</a>
                     <a class="navigation-button" href="{{ url_for('filespage') }}">Files</a>
                 </nav>
             </div>
         </div>
+
         {% block body %}
         {% endblock %}
         {% block scripts %}
