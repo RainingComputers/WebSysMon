@@ -6,57 +6,73 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">    
-        <h2>System Information</h2>
+    <div class="container stacks gap-1em pad-vert-1em">    
+        
+        <div>
+            <h1>System Information</h1>
 
-        <div class="grid gap-2em gap-1em-mobile">
-            <div class="card">
-                <p class="card-title">Processor</p>
-                <span id="processor"></span>
-            </div>
-            <div class="card">
-                <p class="card-title">Cores</p>
-                <span id="core_count"></span>
-            </div>
-            <div class="card">
-                <p class="card-title">Architecture</p>
-                <span id="architecture"></span>
-            </div>
-            <div class="card">
-                <p class="card-title">Memory</p>
-                <span id="memory"></span>
-            </div>
-            <div class="card">
-                <p class="card-title">OS</p>
-                <span id="operating_sys"></span>
-            </div>
-            <div class="card">
-                <p class="card-title">Uptime</p>
-                <span id="uptime"></span>
+            <div class="grid gap-2em gap-1em-mobile">
+                <div class="card stacks gap-1em">
+                    <span class="card-title">Processor</span>
+                    <span id="processor"></span>
+                </div>
+                <div class="card stacks gap-1em">
+                    <span class="card-title">Cores</span>
+                    <span id="core_count"></span>
+                </div>
+                <div class="card stacks gap-1em">
+                    <span class="card-title">Architecture</span>
+                    <span id="architecture"></span>
+                </div>
+                <div class="card stacks gap-1em">
+                    <span class="card-title">Memory</span>
+                    <span id="memory"></span>
+                </div>
+                <div class="card stacks gap-1em">
+                    <span class="card-title">OS</span>
+                    <span id="operating_sys"></span>
+                </div>
+                <div class="card stacks gap-1em">
+                    <span class="card-title">Uptime</span>
+                    <span id="uptime"></span>
+                </div>
             </div>
         </div>
         
-        <h2>Disk Information</h2>
+        <div>
+            <h1>Disk Information</h1>
     
-        <div class="grid gap-2em gap-1em-mobile" id="disk-table">
-
+            <div class="grid gap-2em gap-1em-mobile" id="disk-table">
+    
+            </div>
         </div>
+        
+
 
         <template id="disk-item">
-            <div class="card">
-                <p class="card-title"></p>
-                Mountpoint:
-                <span><!-- mountpoint --></span><br>
-                File system: 
-                <span><!-- filesystem --></span><br>
-                Size:
-                <span><!-- size --></span><br>
-                Available space: 
-                <span><!-- free_space --></span>
+            
+            <div class="card stacks gap-1em">
+                <span id="dsk" class="card-title"></span>
+                <div class="stacks striped rounded">
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Mountpoint</span>
+                        <span id="mtpt"><!-- mountpoint --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">File system</span> 
+                        <span id="fs"><!-- filesystem --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Size</span>
+                        <span id="size"><!-- size --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Available space</span> 
+                        <span id="free"><!-- free_space --></span>
+                    </div>
+                </div>
             </div>         
         </template>
-
-        <span class="padding"></span>
 
     </div>
 {% endblock %}

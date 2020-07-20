@@ -2,6 +2,8 @@ import os
 import datetime
 import collections
 
+from .monitor import bytes2human
+
 # Named tuple for holding file details
 Item = collections.namedtuple(
     'Item',
@@ -10,16 +12,6 @@ Item = collections.namedtuple(
 
 def ls(path, show_hidden=False):
     # Function for conveting bytes to KiB, MiB or GiB
-    def size_str(nbytes):
-        if(nbytes < 1024): 
-            return str(nbytes)+' Bytes'
-        elif(nbytes < (1024*1024)):
-            return str(round(nbytes/1024, 2))+' KiB'
-        elif(nbytes < (1024*1024*1024)):
-            return str(round(nbytes/(1024*1024), 2))+' MiB'
-        else :
-            return str(round(nbytes/(1024*1024*1024), 2))+' GiB'
-
     items = []
 
     for item in os.listdir(path):
@@ -34,7 +26,7 @@ def ls(path, show_hidden=False):
         
         if(not isdir):
             ftype = name.split('.')[-1].lower()
-            size = size_str(nbytes)
+            size = bytes2human(nbytes)
         else:
             ftype = 'folder'
             size = str(len(os.listdir(abs_item_path)))+' Items'      

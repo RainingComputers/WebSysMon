@@ -141,7 +141,7 @@ class Graph
                 this.ctx.beginPath();
                 this.ctx.moveTo(x, 0);
                 this.ctx.lineTo(x, this.height);
-                this.ctx.strokeStyle = "#e3e3e3";
+                this.ctx.strokeStyle = "#44495124";
                 this.ctx.stroke();
             }   
         }
@@ -164,7 +164,7 @@ class Graph
             this.ctx.beginPath();
             this.ctx.moveTo(0, y);
             this.ctx.lineTo(this.width, y+1);
-            this.ctx.strokeStyle = "#e3e3e3";
+            this.ctx.strokeStyle = "#44495124";
             this.ctx.stroke();
         }
         

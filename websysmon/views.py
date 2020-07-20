@@ -28,6 +28,10 @@ def monitorpage():
 def filespage():
     return render_template('ls.html')
 
+@app.route('/netstatpage')
+def netstatpage():
+    return render_template('netstat.html')
+
 @app.route('/monitor', methods=['GET'])
 def getstatus():
     core_count = CORE_COUNT
@@ -60,6 +64,14 @@ def getinfo():
     return jsonify(processor=PROCESSOR, core_count=CORE_COUNT,
         architecture=ARCHITECTURE, operating_sys=OPERATING_SYS, 
         memory=MEMORY, uptime=systemmon.uptime())
+
+@app.route('/netio')
+def netio():
+    return jsonify(networkmon.net_io())
+
+@app.route('/netstat')
+def netstat():
+    return jsonify(networkmon.net_stat())
 
 @app.route('/browse', defaults={'path':HOMEDIR})
 @app.route('/browse/<path:path>')

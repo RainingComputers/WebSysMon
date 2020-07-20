@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
+    <script src="{{ url_for('static', filename='picograph.js') }}"></script>
+    <script src="{{ url_for('static', filename='updatenetstat.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container stacks gap-1em pad-vert-1em">    
+        
+        <div>
+            <h1>Network Usage</h1>
+
+            <div class="card">
+                <p class="card-title"></p>
+                <canvas class="chart" id="netgraph"></canvas>
+                <div id="netlabels"></div>
+            </div>
+        </div>
+
+        <div>
+            <h1>Net IO</h1>
+
+            <div id="net-io-table" class="grid gap-2em"></div>
+        </div>
+
+        <div>
+            <h1>Netstat</h1>
+
+            <div class="card">
+
+                <div class="grid" id="netstat-item">
+                    <div class="inline pad-hor-1em gap-2em">
+                        <span class="inline-expand" id="app"><b>Application</b></span>
+                        <span class="txt-right-align" id="status"><b>Status</b></span>
+                    </div>
+                    <div class="inline pad-hor-1em gap-2em">
+                        <span class="inline-expand" id="laddr"><b>Local Address</b></span>
+                        <span class="txt-right-align" id="proto"><b>Protocol</b></span>
+                    </div>
+                    <div class="inline pad-hor-1em gap-2em">
+                        <span class="inline-expand" id="raddr"><b>Remote Address</b></span>
+                        <span class="txt-right-align" id="pid"><b>PID</b></span>
+                    </div>
+                </div>
+
+                <div id="netstat-table" class="striped rounded">
+                </div>
+
+            </div>
+        </div>
+
+        <template id="net-io-item">
+            <div class="card">
+                <p class="card-title pad-hor-0_5em"></p>
+                
+                <div class="stacks gap-1em">
+                    <div id="RX" class="gap-1em">
+                    </div>
+                    
+                    <div id="TX" class="gap-1em">
+                    </div>
+                </div>
+                
+            </div>
+        </template>
+
+        <template id="net-io-item-X">
+            <div class="stacks gap-0_5em">
+                <div class="inline gap-0_5em pad-hor-0_5em">
+                    <img class="icon" src="">
+                    <span id="dir" class="card-subtitle"></span>
+                </div>
+
+                <div class="stacks striped rounded">
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Packets</span>
+                        <span id="packets" class="txt-right-align"><!-- RX packets filled by JS --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Bytes</span>
+                        <span id="bytes" class="txt-right-align"><!-- RX bytes filled by JS --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Errors</span>
+                        <span id="errors" class="txt-right-align"><!-- RX errors filled by JS --></span>
+                    </div>
+                    <div class="inline pad-hor-0_5em">
+                        <span class="inline-expand">Dropped</span>
+                        <span id="dropped" class="txt-right-align"><!-- RX dropped filled by JS --></span>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="netstat-item">
+            <div class="stack sdiv class="inline"iped">
+
+            </div>
+
+        </template>
+
+    </div>
+{% endblock %}
