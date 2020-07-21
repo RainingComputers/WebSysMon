@@ -13,30 +13,30 @@ function updateInfo(info)
 function updateDiskInfo(info)
 {
     const disktable = byId("disk-table");
-    const disk_item_template = document.querySelector("#disk-item");
+    const diskItemTemplate = document.querySelector("#disk-item");
 
     /* Loop through each disk and add table row */
     for(let disk of info["disk_info"])
     {
         /* Extract info from jason */
-        const device_name = disk["device"];
+        const deviceName = disk["device"];
         const filesystem = disk["fstype"];
         const mountpoint = disk["mountpoint"];
         const size = disk["size"];
-        const free_space = info["disk_usage"][mountpoint]
+        const freeSpace = info["disk_usage"][mountpoint]
 
         /* Clone template */
-        const template_clone = disk_item_template.content.cloneNode(true);
+        const templateClone = diskItemTemplate.content.cloneNode(true);
 
         /* Fill template */
-        template_clone.querySelector('#dsk').textContent = device_name;
-        template_clone.querySelector('#mtpt').textContent = mountpoint;
-        template_clone.querySelector('#fs').textContent = filesystem;
-        template_clone.querySelector('#size').textContent = size;
-        template_clone.querySelector('#free').textContent = free_space;
+        templateClone.querySelector('#dsk').textContent = deviceName;
+        templateClone.querySelector('#mtpt').textContent = mountpoint;
+        templateClone.querySelector('#fs').textContent = filesystem;
+        templateClone.querySelector('#size').textContent = size;
+        templateClone.querySelector('#free').textContent = freeSpace;
 
         /* Add template */
-        disktable.appendChild(template_clone)
+        disktable.appendChild(templateClone)
     }
 
 }

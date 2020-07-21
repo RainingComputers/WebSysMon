@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
-    <script src="{{ url_for('static', filename='ls.js') }}"></script>
+    <script src="static/js/getjson.js"></script>
+    <script src="static/js/ls.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -22,7 +22,7 @@
         </div>
     
         <!-- File browser is filled with file browser items by JS -->
-        <div id="file-browser" class="grid gap-1em disable-usr-select">
+        <div id="file-browser" class="grid gap-1em disable-usr-select pad-vert-0_5em">
         </div>
     
         <template id="file-browser-item"> 

@@ -42,17 +42,6 @@ body {
     font-size: 1.3em;
 }
 
-table {
-    border-collapse: collapse;
-    table-layout: fixed;
-    width: 100%;
-    font-size: 0.9em;
-}
-
-tr:nth-child(even) {
-    background-color: #44495124;
-}
-
 /* 
     ==================
     = Layout classes =
@@ -268,13 +257,13 @@ h1 {
 }
 
 /* 
-    ================
-    = Button class =
-    ================
+    =============================
+    = Button and dropdown class =
+    =============================
 */
 
 .button {
-	background-color: #f8f9fa;
+	background-color: #44495124;
 	border: none;
 	padding: 1em;
 	text-decoration: none;
@@ -283,14 +272,41 @@ h1 {
     border-radius: 8px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .button:hover {
-    filter: brightness(90%);
+    background-color: #4449513d;
 }
 
 .button:active {
-    filter: brightness(85%);
+    background-color: #4449514d;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content-rtl,
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content-rtl {
+    right: 100%;
+    margin-right: -100%;
+}
+
+.dropdown:hover .dropdown-content-rtl,
+.dropdown:hover .dropdown-content {
+    display: block;
+}
 
 /*
     ==========================

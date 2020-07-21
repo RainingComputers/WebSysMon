@@ -1,5 +1,3 @@
-const byId = function(id) { return document.getElementById(id); };
-
 let graphs = {};
 
 /* Function to initialize graphs */
@@ -10,19 +8,19 @@ function initGraph(status)
     for(i = 0; i < status["core_count"]; i++) { cpulabels[i] = "CPU" + i; }
     
     /* Create graph for cpu usage */
-    const cpu_graph = createGraph("cpugraph", cpulabels, "%", "cpulabels", 5, 100);
+    const cpuGraph = createGraph("cpugraph", cpulabels, "%", "cpulabels", 5, 100);
 
     /* Create graph for memory usage */
-    const mem_graph = createGraph("memgraph", ["Memory", "Swap"], "%", "memlabels", 5, 100);
+    const memGraph = createGraph("memgraph", ["Memory", "Swap"], "%", "memlabels", 5, 100);
 
     /* Create graph for network usage */
-    const net_graph = createGraph("netgraph", ["Bytes Received", "Bytes Sent"], "bytes/s", "netlabels", 5, 1000);
+    const netGraph = createGraph("netgraph", ["Bytes Received", "Bytes Sent"], "bytes/s", "netlabels", 5, 1000);
 
     /* Create graph for disk usage */
-    const disk_graph = createGraph("diskgraph", ["Bytes Read", "Bytes Written"], "bytes/s", "disklabels", 5, 1000);
+    const diskGraph = createGraph("diskgraph", ["Bytes Read", "Bytes Written"], "bytes/s", "disklabels", 5, 1000);
 
     /* Make graph object */
-    graphs = {cpu:cpu_graph, mem:mem_graph, net:net_graph, disk:disk_graph};
+    graphs = {cpu:cpuGraph, mem:memGraph, net:netGraph, disk:diskGraph};
 }
 
 function updateCharts(status)

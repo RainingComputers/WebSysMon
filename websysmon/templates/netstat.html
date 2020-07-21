@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block scripts %}
-    <script src="{{ url_for('static', filename='getjson.js') }}"></script>
-    <script src="{{ url_for('static', filename='picograph.js') }}"></script>
-    <script src="{{ url_for('static', filename='updatenetstat.js') }}"></script>
+    <script src="static/js/getjson.js"></script>
+    <script src="static/js/picograph.js"></script>
+    <script src="static/js/updatenetstat.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -26,7 +26,22 @@
         </div>
 
         <div>
-            <h1>Netstat</h1>
+            <div class="inline">
+                <h1 class="inline-expand">Netstat</h1>
+
+                <div class="dropdown">
+                    <div class="button inline gap-0_5em">    
+                        <img src="/static/symbols/filter.svg">
+                        <span>Filter</span>
+                    </div>
+                    <div class="dropdown-content-rtl">
+                        <div class="card">
+                            Now this is a REAL dropdown, kool huh?
+                            <input type="text" id="fname" name="fname">
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="card">
 
@@ -93,13 +108,5 @@
                 </div>
             </div>
         </template>
-
-        <template id="netstat-item">
-            <div class="stack sdiv class="inline"iped">
-
-            </div>
-
-        </template>
-
     </div>
 {% endblock %}

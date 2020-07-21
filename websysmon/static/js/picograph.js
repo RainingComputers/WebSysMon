@@ -18,7 +18,7 @@ colors = [
     "#c0c0c0", "#ffffff", "#ffff00"
 ]
 
-const byID = function(id) { return document.getElementById(id); };
+const byId = function(id) { return document.getElementById(id); };
 
 /* Helper function for creating graphs */
 function createGraph(canvasID, labels, unit, labelDivID, intervalSize, maxVal, 
@@ -39,7 +39,7 @@ function createGraph(canvasID, labels, unit, labelDivID, intervalSize, maxVal,
     {
         const colorID = valueIDs[i] + "color";
         
-        byID(labelDivID).innerHTML += `
+        byId(labelDivID).innerHTML += `
             <div style="display: inline-block;">
                 <svg width="10" height="10">
                     <rect id="${colorID}" width="10" height="10"/>
@@ -50,7 +50,7 @@ function createGraph(canvasID, labels, unit, labelDivID, intervalSize, maxVal,
         `
 
         labelcolor = graph.colors[i];
-        byID(colorID).style = "fill:"+labelcolor;
+        byId(colorID).style = "fill:"+labelcolor;
     }
 
     return graph;
@@ -62,7 +62,7 @@ class Graph
     constructor(canvasID, noLabels, valueIDs, unit, intervalSize, maxVal, vlines, timestamps, scalesteps)
     {
         /* Get the drawing context */
-        this.canvas = byID(canvasID);
+        this.canvas = byId(canvasID);
         const ctx = this.canvas.getContext("2d");
         this.ctx = ctx;
         
@@ -109,7 +109,7 @@ class Graph
             this.points = shiftArrayRowLeft(this.points, i, this.nValues, values[i]);
 
             /* Update value */
-            byID(this.valueIDs[i]).innerHTML = values[i].toFixed(2)+' '+this.unit;
+            byId(this.valueIDs[i]).innerHTML = values[i].toFixed(2)+' '+this.unit;
         } 
 
         /* Log time and add to timestamps_array array */
