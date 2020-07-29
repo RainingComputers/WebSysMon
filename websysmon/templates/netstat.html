@@ -3,25 +3,26 @@
 {% block scripts %}
     <script src="static/js/getjson.js"></script>
     <script src="static/js/picograph.js"></script>
+    <script src="static/js/dropdown.js"></script>
     <script src="static/js/updatenetstat.js"></script>
 {% endblock %}
 
 {% block body %}
-    <div class="container stacks gap-1em pad-vert-1em">    
-        
+    <div class="container stacks gap-2em pad-vert-1em">    
+
         <div>
             <h1>Network Usage</h1>
-
+        
             <div class="card">
                 <p class="card-title"></p>
                 <canvas class="chart" id="netgraph"></canvas>
                 <div id="netlabels"></div>
             </div>
         </div>
-
+        
         <div>
             <h1>Net IO</h1>
-
+        
             <div id="net-io-table" class="grid gap-2em"></div>
         </div>
 
@@ -30,14 +31,28 @@
                 <h1 class="inline-expand">Netstat</h1>
 
                 <div class="dropdown">
-                    <div class="button inline gap-0_5em">    
+                    <div id="filter-dropbtn" class="button inline gap-0_5em">    
                         <img src="/static/symbols/filter.svg">
                         <span>Filter</span>
                     </div>
-                    <div class="dropdown-content-rtl">
-                        <div class="card">
-                            Now this is a REAL dropdown, kool huh?
-                            <input type="text" id="fname" name="fname">
+                    <div class="dropdown-content dropdown-content-rtl" id="filter-dropdown">
+                        <div class="card card-dropdown stacks gap-1em" style="width: 250px;">
+                            <div class="stacks gap-0_5em">
+                                <span>App or Address or Port or PID or Protocol</span>
+                                <input type="text" id="filter-txt" value=""></inputs>
+                            </div>
+                            <div class="inline">
+                                <span class="inline-expand">Show unknown PIDs</span>
+                                <label class="switch">
+                                    <input id="pid_checkbox" type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <center style="margin-top: 1em;">
+                                <span class="button-black" onclick="getJSONAndCall(updateNetstat, '/netstat')" id="filter-dropdown-close">
+                                    Apply
+                                </span>
+                            </center>
                         </div>
                     </div>
                 </div>
@@ -45,7 +60,7 @@
 
             <div class="card">
 
-                <div class="grid" id="netstat-item">
+                <div id="netstat-item" class="grid">
                     <div class="inline pad-hor-1em gap-2em">
                         <span class="inline-expand" id="app"><b>Application</b></span>
                         <span class="txt-right-align" id="status"><b>Status</b></span>
@@ -65,6 +80,8 @@
 
             </div>
         </div>
+
+        <span class="pad-vert-2em"></span>
 
         <template id="net-io-item">
             <div class="card">

@@ -90,7 +90,13 @@ def net_stat():
     for c in psutil.net_connections(kind='inet'):
         laddr = "%s:%s" % (c.laddr)
         raddr = ""
-        if(c.raddr): raddr = "%s:%s" % (c.raddr)
+        
+        lport, rport = -1, -1
+        if(c.raddr): 
+            raddr = "%s:%s" % (c.raddr)
+            lport = c.laddr.port
+            rport = c.raddr.port
+
         net_stat_dict.append({
             'proto':proto_map[(c.family, c.type)],
             'laddr':laddr,
@@ -98,6 +104,8 @@ def net_stat():
             'status':c.status,
             'pid':c.pid or AD,
             'name':proc_names.get(c.pid, '?')[:15],
+            'lport':lport,
+            'rport':rport
         })
 
     return net_stat_dict

@@ -3,15 +3,16 @@
 {% block scripts %}
     <script src="static/js/getjson.js"></script>
     <script src="static/js/picograph.js"></script>
+    <script src="static/js/dropdown.js"></script>
     <script src="static/js/updategraph.js"></script>
 {% endblock %}
 
 {% block body %}
-    <div class="container pad-vert-1em">
+    <div class="container stacks gap-2em pad-vert-1em">
         
-        <h1>System Monitor</h1>
+        <div>
+            <h1>System Monitor</h1>
 
-        <div class="stacks gap-2em gam-1em-mobile">
             <div class="grid gap-2em gam-1em-mobile">
                 <div class="card">
                     <p class="card-title">CPU Usage</p>
@@ -28,23 +29,70 @@
                         <div id="memlabels"></div>
                     </div>
                 </div>
+
             </div>
-        
+        </div>
+
+        <div>
+            <h1>Disk Usage</h1>
+            
             <div class="card">
-                <p class="card-title">Network Usage</p>
-                <canvas class="chart" id="netgraph"></canvas>
-                <div id="netlabels"></div>
-            </div>
-    
-            <div class="card">
-                <p class="card-title">Disk Usage</p>
+                <p class="card-title"></p>
                 <canvas class="chart" id="diskgraph"></canvas>
                 <div id="disklabels"></div>
             </div>
-
         </div>
 
-        <span class="padding"></span>
+        <div>
+            <div class="inline">
+                <h1 class="inline-expand">Running Processes</h1>
+
+                <div class="dropdown">
+                    <div id="filter-dropbtn" class="button inline gap-0_5em">    
+                        <img src="/static/symbols/filter.svg">
+                        <span>Filter</span>
+                    </div>
+                    <div class="dropdown-content dropdown-content-rtl" id="filter-dropdown">
+                        <div class="card card-dropdown stacks gap-1em" style="width: 250px;">
+                            <div class="stacks gap-0_5em">
+                                <span>App or User or PID or Nice value</span>
+                                <input type="text" id="filter-txt" value=""></inputs>
+                            </div>
+                            <center style="margin-top: 1em;">
+                                <span class="button-black" onclick="getJSONAndCall(updateProcstat, '/netstat')" id="filter-dropdown-close">
+                                    Apply
+                                </span>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+       
+            <div class="card">
+
+                <div id="proclist-item" class="grid gap-0_5em-mobile pad-vert-0_5em-mobile">
+                    <div class="inline pad-hor-1em gap-2em">
+                        <span class="inline-expand txt-clip" id="app"><b>Application</b></span>
+                    </div>
+                    <div class="inline pad-hor-1em">
+                        <span style="width: 25%;" class="txt-right-align" id="pid"><b>PID</b></span>
+                        <span style="width: 25%;" class="txt-right-align" id="cpu"><b>CPU</b></span>
+                        <span style="width: 25%;" class="txt-right-align" id="mem"><b>MEM</b></span>
+                        <span style="width: 25%;" class="txt-right-align" id="nice"><b>Nice</b></span>
+                    </div>
+                    <div class="inline pad-hor-1em gap-2em">
+                        <span style="width: 33%;" class="txt-right-align" id="read"><b>Read</b></span>
+                        <span style="width: 33%;" class="txt-right-align" id="write"><b>Write</b></span>
+                        <span style="width: 33%;" class="txt-right-align txt-clip" id="user"><b>user</b></span>
+                    </div>
+                </div>
+
+                <div id="proclist-table" class="striped rounded">
+                </div>
+
+            </div>            
+       
+        </div>
 
     </div>
 {% endblock %}

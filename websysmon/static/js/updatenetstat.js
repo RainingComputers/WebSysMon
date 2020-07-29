@@ -67,7 +67,33 @@ function updateNetstat(netstat)
     
     for(let stat of netstat)
     {
-        if(stat['pid'] === '-') continue;
+        if(stat['pid'] === '-' && !byId('pid_checkbox').checked) continue;   
+
+        /* Check for filter text */
+        let filter = byId("filter-txt").value
+        let matches = false;
+
+        if(filter != '')
+        {
+            for (let key of ['laddr', 'raddr', 'pid', 'proto', 'name']) 
+            {
+                if(!isNaN(filter) && !filter.includes('.'))
+                {
+                    filter_port = Number(filter);
+
+                    if(filter_port === stat['lport'] || 
+                        filter_port === stat['rport']) matches = true;
+                }
+                else if(String(stat[key]).includes(filter))
+                {
+                    matches = true;
+                }
+                    
+            }
+
+            if(!matches) continue;
+        }
+
 
         /* Clone template */
         const templateClone = netstat_item_template.cloneNode(true);
@@ -96,3 +122,5 @@ intervalUpdate();
 
 /* Update values every second */
 setInterval(intervalUpdate, 1000);
+
+createDropdown('filter-dropdown', 'filter-dropbtn', 'dropdown-content', 'dropdown-show', 'filter-dropdown-close');

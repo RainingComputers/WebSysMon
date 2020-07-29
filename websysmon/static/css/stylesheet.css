@@ -10,6 +10,7 @@ body {
     margin: 0px;
     background-color:#f8f9fa;
     line-height: 1.5em;
+    color: #1e2530;
 }
 
 .container {
@@ -30,16 +31,8 @@ body {
     box-shadow: 0 0 0.2rem rgba(0,0,0,0.15) !important;
 }
 
-.card-title *,
-.card-title {
-    margin-top: 0;
-    padding-top: 0;
-    font-size: 1.3em;
-    font-weight: bold;
-}
-
-.card-subtitle {
-    font-size: 1.3em;
+.card-dropdown {
+    box-shadow: 0 0 0.2rem rgba(0,0,1,1) !important;
 }
 
 /* 
@@ -116,6 +109,10 @@ body {
     .gap-none-mobile {
         gap: 0em;
     }
+
+    .gap-0_5em-mobile {
+        gap: 0.5em;
+    }
     
     .gap-1em-mobile {
         gap: 1em;
@@ -182,6 +179,13 @@ body {
     padding-bottom: 2em;
 }
 
+@media only screen and (max-width: 600px) {
+    .pad-vert-0_5em-mobile {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+}
+
 /*
     ================
     = Text classes =
@@ -190,14 +194,15 @@ body {
 
 h1 {
     font-size: 2.3em;
+    line-height: initial;
 }
 
-.rm-link-decoration {
+.txt-rm-link-decoration {
     text-decoration: none;
     color: #000000;
 }
 
-.text-gray {
+.txt-gray {
     color: #212529;
 }
 
@@ -216,6 +221,22 @@ h1 {
 
 .txt-right-align {
     text-align: right;
+}
+
+.txt-bold {
+    font-weight: bold;
+}
+
+.card-title *,
+.card-title {
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.card-subtitle {
+    font-size: 1.3em;
 }
 
 /*
@@ -262,6 +283,7 @@ h1 {
     =============================
 */
 
+.button-black,
 .button {
 	background-color: #44495124;
 	border: none;
@@ -270,11 +292,13 @@ h1 {
 	overflow: hidden;
     cursor: pointer;
     border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
+.button-black {
+    background-color: #1e2530;
+    color: white;    
 }
 
 .button:hover {
@@ -285,12 +309,19 @@ h1 {
     background-color: #4449514d;
 }
 
+.button-black:hover {
+    background-color: #161b24;
+}
+
+.button-black:active {
+    background-color: #10151e;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
-
-.dropdown-content-rtl,
+  
 .dropdown-content {
     display: none;
     position: absolute;
@@ -302,10 +333,79 @@ h1 {
     right: 100%;
     margin-right: -100%;
 }
-
-.dropdown:hover .dropdown-content-rtl,
-.dropdown:hover .dropdown-content {
+  
+.dropdown-show {
     display: block;
+}
+
+/* 
+    =================
+    = Slider switch =
+    =================
+*/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #44495124;
+    border-radius: 34px;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #1e2530;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/*
+    ===============
+    = Input field =
+    ===============
+*/
+
+input[type=text], select {
+    border: 2px solid #44495124;
+    background-color: #cccccc24;
+    padding: 1em 1em;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font: 15px "Lucida Console", Monaco, monospace;
+}
+  
+input[type=text]:focus {
+    border: 2px solid #1e2530;
 }
 
 /*
@@ -320,10 +420,6 @@ h1 {
     position: sticky;
     top: 0;
     width: 100%;
-}
-
-#navigation-bar .container {
-    padding-top: 0;
 }
 
 .navigation-bar-title {

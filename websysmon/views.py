@@ -65,6 +65,10 @@ def getinfo():
         architecture=ARCHITECTURE, operating_sys=OPERATING_SYS, 
         memory=MEMORY, uptime=systemmon.uptime())
 
+@app.route('/proclist')
+def proclist():
+    return jsonify(systemmon.proc_list())
+
 @app.route('/netio')
 def netio():
     return jsonify(networkmon.net_io())
@@ -91,6 +95,3 @@ def browse(path):
 
     return jsonify({'hidden':session['showhidden'], 'path':path, 
         'items':ls(path, session['showhidden'])})
-    
-    #return render_template('ls_old.html', items=ls(path, showhidden), 
-    #    path=path, hidden=showhidden)
