@@ -84,7 +84,7 @@ function updateNetstat(netstat)
                     if(filter_port === stat['lport'] || 
                         filter_port === stat['rport']) matches = true;
                 }
-                else if(String(stat[key]).includes(filter))
+                else if(String(stat[key]).toLowerCase().includes(filter.toLowerCase()))
                 {
                     matches = true;
                 }

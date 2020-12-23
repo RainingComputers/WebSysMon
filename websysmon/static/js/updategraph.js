@@ -61,7 +61,7 @@ function updateProcstat(procstat)
 
             for (let key of ['name', 'username']) 
             {
-                if(String(stat[key]).includes(filter))
+                if(String(stat[key]).toLowerCase().includes(filter.toLowerCase()))
                 {
                     matches = true;
                 }
